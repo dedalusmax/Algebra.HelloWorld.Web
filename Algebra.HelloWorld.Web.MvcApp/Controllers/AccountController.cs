@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Algebra.HelloWorld.Web.MvcApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Algebra.HelloWorld.Web.MvcApp.Controllers
@@ -14,7 +15,14 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         // GET: AccountController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var account = new Account()
+            {
+                Id = id,
+                Name = "Tekući račun",
+                Total = 2500
+            };
+
+            return View(account);
         }
 
         // GET: AccountController/Create
@@ -41,7 +49,14 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         // GET: AccountController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var account = new Account()
+            {
+                Id = id,
+                Name = "Tekući račun",
+                Total = 2500
+            };
+
+            return View(account);
         }
 
         // POST: AccountController/Edit/5
