@@ -1,4 +1,4 @@
-﻿using Algebra.HelloWorld.Web.MvcApp.Models;
+using Algebra.HelloWorld.Web.MvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -11,8 +11,6 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-
-            _logger.Log(LogLevel.Information, "Početak rada sa kontrolerom");
         }
 
         public IActionResult Index()
@@ -21,12 +19,6 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         }
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Test()
         {
             return View();
         }
