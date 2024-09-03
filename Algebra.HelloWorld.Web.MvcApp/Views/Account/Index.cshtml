@@ -1,5 +1,54 @@
-﻿@{
+﻿@model List<Account>
+
+@{
     ViewData["Title"] = "Računi";
 }
 
 <h1>@ViewBag.Title</h1>
+<hr />
+
+<p>
+    @Html.ActionLink("Kreiraj novi račun", "Create")
+@*     <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Create">Kreiraj novi račun</a>
+ *@
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            IBAN računa
+        </th>
+        <th>
+            Datum otvaranja računa
+        </th>
+        <th>
+            Naziv računa
+        </th>
+        <th>
+            Saldo računa
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var racun in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => racun.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(x => racun.DateOfIssue)
+            </td>
+            <td>
+                @Html.DisplayFor(x => racun.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(x => racun.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Detalji", "Edit") |
+                @Html.ActionLink("Briši račun", "Delete")
+            </td>
+        </tr>
+    }
+</table>

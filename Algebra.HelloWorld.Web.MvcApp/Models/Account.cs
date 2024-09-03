@@ -15,21 +15,31 @@ public class Account
     [DisplayName("Naziv računa")]
     public string Name { get; set; } = string.Empty;
 
-    //[DisplayName("Saldo računa")]
-    //public decimal Total { get; set; }
+    [DisplayName("Saldo računa")]
+    public decimal Total { 
+        get {
+            decimal total = 0;
+            foreach (var transaction in Transactions)
+            {
+                total += transaction.Amount;
+            }
+
+            return total;
+        }
+    }
 
     [DisplayName("Lista transakcija")]
     public List<AccountTransaction> Transactions { get; set; } = [];
 
-    [DisplayName("Saldo računa")]
-    public decimal CalculateTotal()
-    {
-        decimal total = 0;
-        foreach(var transaction in Transactions)
-        {
-            total += transaction.Amount;
-        }
+    //[DisplayName("Saldo računa")]
+    //public decimal CalculateTotal()
+    //{
+    //    decimal total = 0;
+    //    foreach(var transaction in Transactions)
+    //    {
+    //        total += transaction.Amount;
+    //    }
 
-        return total;
-    }
+    //    return total;
+    //}
 }
