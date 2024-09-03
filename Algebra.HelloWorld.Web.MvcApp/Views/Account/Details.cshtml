@@ -29,6 +29,19 @@
             @Html.DisplayFor(model => model.Total)
         </dd>
     </dl>
+
+    <table>
+        <thead>
+
+        </thead>
+        @foreach (var t in Model.Transactions)
+        {
+            <tr>
+                <td>@t.Amount</td>
+            </tr>
+        }
+    </table>
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

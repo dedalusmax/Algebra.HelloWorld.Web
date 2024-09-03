@@ -9,7 +9,13 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         // GET: AccountController
         public ActionResult Index()
         {
-            return View();
+            var custom = new {
+                Id = 1,
+                Name = "Pero",
+                Age = 32
+            };
+
+            return View(custom);
         }
 
         // GET: AccountController/Details/5
@@ -21,6 +27,8 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
                 Name = "Tekući račun",
                 Total = 2500
             };
+            account.Transactions.Add(new Transaction() { Amount = 200 });
+            account.Transactions.Add(new Transaction() { Amount = -50 });
 
             return View(account);
         }
