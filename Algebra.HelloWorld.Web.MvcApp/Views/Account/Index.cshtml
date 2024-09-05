@@ -46,7 +46,7 @@
                 @Html.DisplayFor(x => racun.Total)
             </td>
             <td>
-                @Html.ActionLink("Detalji", "Details") |
+                @Html.ActionLink("Detalji", "Details", new { id = racun.Id }) |
                 @Html.ActionLink("Briši račun", "Delete")
             </td>
         </tr>

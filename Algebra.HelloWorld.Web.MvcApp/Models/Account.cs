@@ -10,7 +10,7 @@ public class Account
     public long Number { get; set; }
 
     [DisplayName("Datum otvaranja računa")]
-    public DateTime DateOfIssue { get; set; }
+    public DateTime DateOfIssue { get; set; } = DateTime.Today;
 
     [DisplayName("Naziv računa")]
     public string Name { get; set; } = string.Empty;

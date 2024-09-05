@@ -30,9 +30,11 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
             return View();
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+            return View(account);
         }
 
         public IActionResult Delete()
