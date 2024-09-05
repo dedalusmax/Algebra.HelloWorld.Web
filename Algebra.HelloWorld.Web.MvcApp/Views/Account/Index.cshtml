@@ -47,7 +47,7 @@
             </td>
             <td>
                 @Html.ActionLink("Detalji", "Details", new { id = racun.Id }) |
-                @Html.ActionLink("Briši račun", "Delete")
+                @Html.ActionLink("Briši račun", "Delete", new { id = racun.Id })
             </td>
         </tr>
     }

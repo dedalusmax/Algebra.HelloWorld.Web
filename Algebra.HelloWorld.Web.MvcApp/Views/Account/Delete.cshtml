@@ -1,5 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Account
+
 @{
+    ViewData["Title"] = "Brisanje računa";
 }
+
+<h1>@ViewBag.Title</h1>
+<hr />
+
+<h3>Jeste li sigurni da želite obrisati račun?</h3>
+<p>@Model.Name</p>
+
+<form asp-action="Delete">
+    <input type="submit" value="Briši" class="btn btn-primary" />
+</form>
+
+<div>
+    <a asp-action="Index">Povratak na početnu stranicu</a>
+</div>    

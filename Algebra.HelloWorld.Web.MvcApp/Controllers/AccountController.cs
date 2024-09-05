@@ -25,10 +25,22 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
             return View(_accounts);
         }
 
+        #region Create actions
+
         public IActionResult Create()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Account model)
+        {
+            _accounts.Add(model);
+
+            return RedirectToAction("Index");
+        }
+
+        #endregion
 
         public IActionResult Details(int id)
         {
@@ -37,9 +49,21 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
             return View(account);
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return View();
+            var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+            return View(account);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Account model)
+        {
+            var account = _accounts.SingleOrDefault(x => x.Id == model.Id);
+
+            _accounts.Remove(account);
+
+            return RedirectToAction("Index");
         }
     }
 }
