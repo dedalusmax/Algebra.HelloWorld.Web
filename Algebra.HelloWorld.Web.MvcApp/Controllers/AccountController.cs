@@ -1,14 +1,14 @@
-﻿using Algebra.HelloWorld.Web.MvcApp.Models;
-using Algebra.HelloWorld.Web.MvcApp.Repositories;
+﻿using Algebra.HelloWorld.Web.MvcApp.Interfaces;
+using Algebra.HelloWorld.Web.MvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Algebra.HelloWorld.Web.MvcApp.Controllers
 {
     public class AccountController : Controller
     {        
-        private readonly AccountRepository _repository;
+        private readonly IAccountRepository _repository;
 
-        public AccountController(AccountRepository repository)
+        public AccountController(IAccountRepository repository)
         {
             _repository = repository;
             //var repository = new AccountRepository();

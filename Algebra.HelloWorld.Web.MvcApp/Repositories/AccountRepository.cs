@@ -1,8 +1,9 @@
-﻿using Algebra.HelloWorld.Web.MvcApp.Models;
+﻿using Algebra.HelloWorld.Web.MvcApp.Interfaces;
+using Algebra.HelloWorld.Web.MvcApp.Models;
 
 namespace Algebra.HelloWorld.Web.MvcApp.Repositories
 {
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {        
         // simulacija baze podataka
         private static List<Account> _accounts;
