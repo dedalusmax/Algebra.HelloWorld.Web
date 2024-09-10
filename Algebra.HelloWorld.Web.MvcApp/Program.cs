@@ -1,3 +1,5 @@
+using Algebra.HelloWorld.Web.MvcApp.Repositories;
+
 namespace Algebra.HelloWorld.Web.MvcApp
 {
     public class Program
@@ -8,6 +10,8 @@ namespace Algebra.HelloWorld.Web.MvcApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<AccountRepository>();
 
             var app = builder.Build();
 

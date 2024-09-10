@@ -1,28 +1,22 @@
 ﻿using Algebra.HelloWorld.Web.MvcApp.Models;
+using Algebra.HelloWorld.Web.MvcApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Algebra.HelloWorld.Web.MvcApp.Controllers
 {
     public class AccountController : Controller
-    {
-        // simulacija baze podataka
-        private static List<Account> _accounts;
+    {        
+        private readonly AccountRepository _repository;
 
-        public AccountController()
+        public AccountController(AccountRepository repository)
         {
-            if (_accounts == null)
-            {
-                _accounts = new List<Account>();
-
-                _accounts.Add(new Account() { Id = 1, Name = "Tekući račun", DateOfIssue = DateTime.Today.AddMonths(-3), Number = 123213213 });
-                _accounts.Add(new Account() { Id = 2, Name = "Žiro-račun", DateOfIssue = DateTime.Today.AddMonths(-1), Number = 23213232 });
-                _accounts.Add(new Account() { Id = 3, Name = "Devizni račun", DateOfIssue = DateTime.Today.AddMonths(-2), Number = 343434343 });
-            }
+            _repository = repository;
+            //var repository = new AccountRepository();
         }
 
         public IActionResult Index()
         {
-            return View(_accounts);
+            return View(_repository.GetAccounts());
         }
 
         #region Create actions
@@ -35,8 +29,7 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
         [HttpPost]
         public IActionResult Create(Account model)
         {
-            _accounts.Add(model);
-
+            _repository.Create(model);
             return RedirectToAction("Index");
         }
 
@@ -44,24 +37,18 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
 
         public IActionResult Details(int id)
         {
-            var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-            return View(account);
+            return View(_repository.GetById(id));
         }
 
         public IActionResult Delete(int id)
         {
-            var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-            return View(account);
+            return View(_repository.GetById(id));
         }
 
         [HttpPost]
         public IActionResult Delete(Account model)
         {
-            var account = _accounts.SingleOrDefault(x => x.Id == model.Id);
-
-            _accounts.Remove(account);
+            _repository.Delete(model);
 
             return RedirectToAction("Index");
         }
