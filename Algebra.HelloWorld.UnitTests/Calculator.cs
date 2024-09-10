@@ -4,11 +4,14 @@ internal class Calculator
 {
     public double CalculateVat(double amount)
     {
-        return amount * 1.25;
+        if (amount < 0)
+            throw new ArgumentException("Negative number not allowed.");
+
+        return Math.Round(amount * 1.25, 2);
     }
 
     public double CalculateTax(double amount, double tax)
     {
-        return amount * 100 * tax / 100;
+        return Math.Round(amount + amount * tax / 100, 2);
     }
 }
