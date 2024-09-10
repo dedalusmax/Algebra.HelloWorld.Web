@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Algebra.HelloWorld.Web.MvcApp\Algebra.HelloWorld.Web.MvcApp.csproj" />
+  </ItemGroup>
+
 </Project>

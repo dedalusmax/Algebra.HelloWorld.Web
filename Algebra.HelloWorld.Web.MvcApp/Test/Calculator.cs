@@ -1,6 +1,6 @@
-﻿namespace Algebra.HelloWorld.UnitTests;
+﻿namespace Algebra.HelloWorld.Web.MvcApp.Test;
 
-internal class Calculator
+public class Calculator
 {
     public double CalculateVat(double amount)
     {
