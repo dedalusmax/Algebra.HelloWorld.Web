@@ -10,6 +10,9 @@ namespace Algebra.HelloWorld.Web.MvcApp.Controllers
 
         public AccountController(IAccountRepository repository)
         {
+            if (repository == null)
+                throw new ArgumentNullException(nameof(repository));
+
             _repository = repository;
             //var repository = new AccountRepository();
         }
