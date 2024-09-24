@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Algebra.HelloWorld.Web.MvcApp.Models;
+namespace Algebra.HelloWorld.Domain.Models;
 
 public class Book
 {

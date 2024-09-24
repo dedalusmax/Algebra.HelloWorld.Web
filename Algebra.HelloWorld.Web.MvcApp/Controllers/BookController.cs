@@ -1,4 +1,4 @@
-﻿using Algebra.HelloWorld.Web.MvcApp.Models;
+﻿using Algebra.HelloWorld.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Algebra.HelloWorld.Web.MvcApp.Controllers;
