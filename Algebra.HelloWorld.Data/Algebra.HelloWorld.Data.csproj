@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Algebra.HelloWorld.Domain\Algebra.HelloWorld.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
