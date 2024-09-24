@@ -1,3 +1,6 @@
+using Algebra.HelloWorld.Data.Repositories;
+using Algebra.HelloWorld.Domain.Interfaces;
+
 namespace Algebra.HelloWorld.Web.MvcApp
 {
     public class Program
@@ -8,6 +11,8 @@ namespace Algebra.HelloWorld.Web.MvcApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IBookRepository, BookRepository>();
 
             var app = builder.Build();
 

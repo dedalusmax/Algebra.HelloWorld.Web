@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using Algebra.HelloWorld.Domain.Interfaces;
+using System.ComponentModel;
 
 namespace Algebra.HelloWorld.Domain.Models;
 
-public class Book
+public class Book : IEntity
 {
     public int Id { get; set; }
 

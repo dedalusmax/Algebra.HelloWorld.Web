@@ -1,18 +1,23 @@
+using Algebra.HelloWorld.Data.Repositories;
 using Algebra.HelloWorld.Web.MvcApp.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Algebra.HelloWorld.UnitTests;
 
 public class BookControllerTests
 {
     [Fact]
-    public void Test1()
+    public void TestBookController_Index_Valid()
     {
         // Arrange
-        var controller = new BookController();
+        var repository = new BookRepository();
+        var controller = new BookController(repository);
 
         // Act
-        controller.Index();
+        var result = controller.Index();
 
         // Assert
+        Assert.IsAssignableFrom<ViewResult>(result);
+        Assert.NotNull(result);
     }
 }

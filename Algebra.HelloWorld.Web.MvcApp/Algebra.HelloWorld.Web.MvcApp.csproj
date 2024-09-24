@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Algebra.HelloWorld.Data\Algebra.HelloWorld.Data.csproj" />
     <ProjectReference Include="..\Algebra.HelloWorld.Domain\Algebra.HelloWorld.Domain.csproj" />
   </ItemGroup>
 
