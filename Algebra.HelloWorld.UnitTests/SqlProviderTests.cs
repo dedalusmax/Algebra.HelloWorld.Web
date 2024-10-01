@@ -1,5 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Algebra.HelloWorld.Domain.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace Algebra.HelloWorld.UnitTests;
 
@@ -71,5 +73,122 @@ public class SqlProviderTests
         using var connection = new SqlConnection(connectionString);
 
         connection.Open();
+    }
+
+    [Fact]
+    public void TestSql_NonQueryCommand_Success()
+    {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using var connection = new SqlConnection(connectionString);
+
+        var command = new SqlCommand($"SELECT 1", connection);       
+
+        connection.Open();
+
+        var result = command.ExecuteNonQuery();
+
+        Assert.Equal(-1, result);
+    }
+
+    [Fact]
+    public void TestSql_ScalarCommand_Success()
+    {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using var connection = new SqlConnection(connectionString);
+
+        using var command = new SqlCommand($"SELECT 1", connection);
+
+        connection.Open();
+
+        var result = command.ExecuteScalar();
+
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public void TestSql_DataReaderCommand_Success()
+    {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using var connection = new SqlConnection(connectionString);
+
+        using var command = new SqlCommand($"SELECT * FROM Book", connection);
+
+        connection.Open();
+
+        using var reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+            reader.GetInt32("BookId");
+
+            Console.Write($"BookId: {reader["BookId"]}, ");
+            Console.Write($"Title: {reader["Title"]}, ");
+            Console.Write($"Genre: {reader["Genre"]}, ");
+            Console.Write($"Stock: {reader["Stock"]}, ");
+            Console.WriteLine($"ReleaseDate: {reader["ReleaseDate"]}.");
+        }
+    }
+
+
+    [Fact]
+    public void TestSql_DataReaderCommand_GetAll()
+    {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using var connection = new SqlConnection(connectionString);
+
+        using var command = new SqlCommand($"SELECT * FROM Book", connection);
+
+        connection.Open();
+
+        using var reader = command.ExecuteReader();
+
+        var result = new List<Book>();
+
+        while (reader.Read())
+        {
+            result.Add(new Book()
+            {
+                Id = reader.GetInt32("BookId"),
+                Name = reader.GetString("Title")
+            });
+        }
+
+        Assert.NotNull(result);
+        Assert.NotEmpty(result);
+        Assert.Equal(5, result.Count);
+    }
+
+    [Fact]
+    public void TestSql_DataReaderCommand_GetById()
+    {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using var connection = new SqlConnection(connectionString);
+
+        using var command = new SqlCommand($"SELECT * FROM Book WHERE BookId = @id", connection);
+        command.Parameters.AddWithValue("@id", 3);
+
+        connection.Open();
+
+        using var reader = command.ExecuteReader();
+
+        var result = new List<Book>();
+
+        while (reader.Read())
+        {
+            result.Add(new Book()
+            {
+                Id = reader.GetInt32("BookId"),
+                Name = reader.GetString("Title")
+            });
+        }
+
+        Assert.NotNull(result);
+        Assert.NotEmpty(result);
+        Assert.Single(result);
     }
 }
