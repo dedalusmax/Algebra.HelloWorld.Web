@@ -1,12 +1,13 @@
 ﻿using Algebra.HelloWorld.Domain.Interfaces;
 using Algebra.HelloWorld.Domain.Models;
+using System.Data.Common;
 
 namespace Algebra.HelloWorld.Data.Repositories;
 
 public class BookRepository : IBookRepository
 {
     // simulacija baze podataka
-    private static List<Book> _books;
+    private static List<Book>? _books;
 
     public BookRepository()
     {
@@ -23,25 +24,37 @@ public class BookRepository : IBookRepository
 
     public void Create(Book book)
     {
-        _books.Add(book);
+        _books!.Add(book);
+    }
+
+    public void Edit(Book book)
+    {
+        var data = _books!.SingleOrDefault(x => x.Id == book.Id);
+        if (data != null)
+        {
+            data.Name = book.Name;
+            data.Author = book.Author;
+            data.IsBorrowed = book.IsBorrowed;
+            data.DateTimeBorrowed = book.DateTimeBorrowed;
+        }
     }
 
     public void Delete(Book book)
     {
-        var data = _books.SingleOrDefault(x => x.Id == book.Id);
+        var data = _books!.SingleOrDefault(x => x.Id == book.Id);
         if (data != null)
         {
-            _books.Remove(data);
+            _books!.Remove(data);
         }
     }
 
     public List<Book> GetBooks()
     {
-        return _books;
+        return _books!;
     }
 
     public Book? GetById(int id)
     {
-        return _books.SingleOrDefault(x => x.Id == id);
+        return _books!.SingleOrDefault(x => x.Id == id);
     }
 }

@@ -15,4 +15,6 @@ public class Book : IEntity
 
     [DisplayName("Datum posudbe")]
     public DateTime? DateTimeBorrowed { get; set; }
+
+    public Author Author { get; set; }
 }
