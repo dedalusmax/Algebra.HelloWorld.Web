@@ -16,6 +16,30 @@ namespace Algebra.HelloWorld.Web.MvcApp
 
             var app = builder.Build();
 
+            #region Testing env
+
+            if (app.Environment.IsDevelopment()) {
+                Console.WriteLine("Development environment");
+            }
+            else if (app.Environment.IsStaging())
+            {
+                Console.WriteLine("Staging environment");
+            }
+            else if (app.Environment.IsProduction())
+            {
+                Console.WriteLine("Production environment");
+            }
+            else if (app.Environment.IsEnvironment("Testing"))
+            {
+                Console.WriteLine("Testing environment");
+            }
+            else
+            {
+                Console.WriteLine("Custom environment: {0}", app.Environment.EnvironmentName);
+            }
+
+            #endregion
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

@@ -1,12 +1,15 @@
-﻿using Algebra.HelloWorld.Domain.Interfaces;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Algebra.HelloWorld.Domain.Models;
 
-public class Author : IEntity
+public class Author 
 {
-    public int Id { get; set; }
+    public int AuthorId { get; set; }
 
-    [DisplayName("Autor knjige")]
+    [DisplayName("Autor")]
     public string Name { get; set; }
+
+    public string Bio { get; set; }
+
+    public override string ToString() => Name;
 }

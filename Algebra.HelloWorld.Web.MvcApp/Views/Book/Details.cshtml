@@ -4,29 +4,41 @@
     <h4>Book</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BookId)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BookId)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsBorrowed)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsBorrowed)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateTimeBorrowed)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genre)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateTimeBorrowed)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
     </dl>
 </div>

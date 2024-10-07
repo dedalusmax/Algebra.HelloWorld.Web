@@ -1,20 +1,29 @@
-﻿using Algebra.HelloWorld.Domain.Interfaces;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Algebra.HelloWorld.Domain.Models;
 
-public class Book : IEntity
+public class Book 
 {
-    public int Id { get; set; }
+    [DisplayName("ID knjige")]
+    public int BookId { get; set; }
 
-    [DisplayName("Naziv knjige")]
-    public string Name { get; set; }
+    [DisplayName("Naslov knjige")]
+    public string Title { get; set; }
 
-    [DisplayName("Posuđena?")]
-    public bool IsBorrowed { get; set; }
+    [DisplayName("Kratki opis")]
+    public string Description { get; set; }
 
-    [DisplayName("Datum posudbe")]
-    public DateTime? DateTimeBorrowed { get; set; }
+    [DisplayName("Žanr")]
+    public string Genre { get; set; }
 
+    [DisplayName("Na zalihi")]
+    public int Stock { get; set; }
+
+    [DisplayName("Datum izdanja")]
+    public DateTime ReleaseDate { get; set; }
+
+    [DisplayName("Autor")]
     public Author Author { get; set; }
+
+    public override string ToString() => Title;
 }

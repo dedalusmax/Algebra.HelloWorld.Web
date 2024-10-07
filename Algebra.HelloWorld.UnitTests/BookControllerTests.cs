@@ -10,7 +10,7 @@ public class BookControllerTests
     public void TestBookController_Index_Valid()
     {
         // Arrange
-        var repository = new BookRepository();
+        var repository = new BookRepository(null);
         var controller = new BookController(repository);
 
         // Act

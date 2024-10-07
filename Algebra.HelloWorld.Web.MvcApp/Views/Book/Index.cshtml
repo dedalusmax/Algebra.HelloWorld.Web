@@ -3,51 +3,58 @@
 @model IEnumerable<Book>
 
 @{
-    ViewData["Title"] = "Dodavanje knjige";
+    ViewData["Title"] = "Knjižnica";
 }
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nova knjiga</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.BookId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsBorrowed)
+                @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateTimeBorrowed)
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsBorrowed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTimeBorrowed)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookId })
+                    @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

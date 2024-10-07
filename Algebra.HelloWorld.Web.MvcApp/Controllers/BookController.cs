@@ -63,7 +63,8 @@ public class BookController : Controller
     {
         try
         {
-            // TODO: implementirati edit metodu u repozitoriju
+            _repository.Update(model);
+
             return RedirectToAction(nameof(Index));
         }
         catch
