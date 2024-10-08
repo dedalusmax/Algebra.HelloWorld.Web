@@ -3,15 +3,8 @@ using Algebra.HelloWorld.Web.MvcApp.Models;
 
 namespace Algebra.HelloWorld.Data.Repositories;
 
-public class BookRepository : IBookRepository
+public class BookRepository(BookLibraryContext context) : IBookRepository
 {
-    private readonly string _connectionString = string.Empty;
-
-    public BookRepository(IConfiguration configuration)
-    {
-        _connectionString = configuration.GetConnectionString("DefaultConnection")!;
-    }
-
     public void Create(Book book)
     {
         //_books!.Add(book);
@@ -40,11 +33,26 @@ public class BookRepository : IBookRepository
 
     public List<Book> GetBooks()
     {
-        return new List<Book>();
+        foreach (var book in context.Books)
+        {
+            Console.WriteLine(book);
+        }
+
+        return context.Books.ToList();
+    }
+
+    public List<Book> GetBooks(string searchByName)
+    {
+        return context.Books
+            .Where(x => x.Title.StartsWith(searchByName))
+            .ToList();
     }
 
     public Book? GetById(int id)
     {
-        return new Book();
+        // var book = context.Books.FirstOrDefault(x => x.BookId == id);   
+        var book = context.Books.Find(id);
+
+        return book;
     }
 }
