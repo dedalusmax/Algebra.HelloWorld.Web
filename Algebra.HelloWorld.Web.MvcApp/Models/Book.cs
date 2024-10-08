@@ -1,29 +1,23 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Algebra.HelloWorld.Domain.Models;
+namespace Algebra.HelloWorld.Web.MvcApp.Models;
 
-public class Book 
+public partial class Book
 {
-    [DisplayName("ID knjige")]
     public int BookId { get; set; }
 
-    [DisplayName("Naslov knjige")]
-    public string Title { get; set; }
+    public int Author { get; set; }
 
-    [DisplayName("Kratki opis")]
-    public string Description { get; set; }
+    public string Title { get; set; } = null!;
 
-    [DisplayName("Žanr")]
-    public string Genre { get; set; }
+    public string Description { get; set; } = null!;
 
-    [DisplayName("Na zalihi")]
-    public int Stock { get; set; }
+    public string Genre { get; set; } = null!;
 
-    [DisplayName("Datum izdanja")]
+    public int? Stock { get; set; }
+
     public DateTime ReleaseDate { get; set; }
 
-    [DisplayName("Autor")]
-    public Author Author { get; set; }
-
-    public override string ToString() => Title;
+    public virtual Author AuthorNavigation { get; set; } = null!;
 }

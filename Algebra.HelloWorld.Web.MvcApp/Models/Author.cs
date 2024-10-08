@@ -1,15 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Algebra.HelloWorld.Domain.Models;
+namespace Algebra.HelloWorld.Web.MvcApp.Models;
 
-public class Author 
+public partial class Author
 {
     public int AuthorId { get; set; }
 
-    [DisplayName("Autor")]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string Bio { get; set; }
+    public string? Bio { get; set; }
 
-    public override string ToString() => Name;
+    public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 }

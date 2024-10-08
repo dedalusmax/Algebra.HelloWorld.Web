@@ -1,5 +1,5 @@
 ﻿using Algebra.HelloWorld.Domain.Interfaces;
-using Algebra.HelloWorld.Domain.Models;
+using Algebra.HelloWorld.Web.MvcApp.Models;
 
 namespace Algebra.HelloWorld.Data.Repositories;
 
