@@ -22,12 +22,10 @@ public class SqlProviderTests
     public void TestSql_Connection_Failed()
     {
         var connection = new SqlConnection(string.Empty);
-        
-        connection.Open();
-        connection.Close();
 
-        // TODO: systemInvalid
-        connection.Dispose();
+        var result = () => connection.Open();
+
+        Assert.Throws<InvalidOperationException>(result);
     }
 
     [Fact]
@@ -62,7 +60,9 @@ public class SqlProviderTests
     {
         using var connection = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=book_library;User ID=sa;Password=ratko123;");
 
-        connection.Open();
+        var result = () => connection.Open();
+
+        Assert.Throws<SqlException>(result);
     }
 
     [Fact]
