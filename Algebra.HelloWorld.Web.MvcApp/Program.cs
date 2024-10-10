@@ -1,8 +1,3 @@
-using Algebra.HelloWorld.Data.Repositories;
-using Algebra.HelloWorld.Domain.Interfaces;
-using Algebra.HelloWorld.Web.MvcApp.Models;
-using Microsoft.EntityFrameworkCore;
-
 namespace Algebra.HelloWorld.Web.MvcApp
 {
     public class Program
@@ -13,13 +8,6 @@ namespace Algebra.HelloWorld.Web.MvcApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
-
-            builder.Services.AddDbContext<BookLibraryContext>(options =>
-                options.UseSqlServer(connStr));
-
-            builder.Services.AddTransient<IBookRepository, BookRepository>();
 
             var app = builder.Build();
 
