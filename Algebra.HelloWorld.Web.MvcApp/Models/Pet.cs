@@ -18,14 +18,15 @@ public class Pet
     //[ForeignKey("PetShopId"), Column("PetShopId")]
     //public int PetShop { get; set; }
 
-    //[Column("PetShop")]
-    //public int PetShop { get; set; }
+    public int PetShopId { get; set; }
 
     [Required]
-    public virtual required PetShop PetShop { get; set; }
+    public virtual PetShop PetShop { get; set; }
+
+    public int PetTypeId { get; set; }
 
     [Required]
-    public virtual required PetType PetType { get; set; }
+    public virtual PetType PetType { get; set; }
 
     //[ConcurrencyCheck]
     //public string Version { get; set; }

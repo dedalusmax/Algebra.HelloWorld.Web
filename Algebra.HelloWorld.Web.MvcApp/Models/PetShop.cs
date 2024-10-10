@@ -18,7 +18,7 @@ public class PetShop
     [EmailAddress]
     public string? EmailAddress { get; set; }
 
-    public virtual required ICollection<Pet> Pets { get; set; }
+    public virtual ICollection<Pet> Pets { get; set; } = [];
 
     [NotMapped]
     public int TotalPets => Pets.Count;
