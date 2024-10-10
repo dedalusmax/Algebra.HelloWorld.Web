@@ -1,3 +1,6 @@
+using Algebra.HelloWorld.Web.MvcApp.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Algebra.HelloWorld.Web.MvcApp
 {
     public class Program
@@ -8,6 +11,11 @@ namespace Algebra.HelloWorld.Web.MvcApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<PetShopDbContext>(options =>
+                options.UseSqlServer(connStr));
 
             var app = builder.Build();
 
