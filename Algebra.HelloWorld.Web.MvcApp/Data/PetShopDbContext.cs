@@ -9,6 +9,8 @@ public class PetShopDbContext : DbContext
 
     public DbSet<Pet> Pets { get; set; }
 
+    public DbSet<PetType> PetTypes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PetShopDB;Trusted_Connection=true;");
@@ -19,13 +21,13 @@ public class PetShopDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Fluent API
+        modelBuilder.Entity<PetShop>()
+            .HasIndex(x => new { x.Name, x.Address })
+            .IsUnique();
 
-        //modelBuilder.Entity<Pet>()
-        //    .HasOne(p => p.PetShop)
-        //    .WithMany()
-        //    .HasForeignKey(p => p.PetShop)
-        //    .IsRequired(true)
-        //    .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<Pet>()
+            .HasIndex(x => x.Name)
+            .IsUnique();
 
         // TODO: EF Core Configurations
 
