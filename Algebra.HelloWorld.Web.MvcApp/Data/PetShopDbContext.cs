@@ -9,9 +9,23 @@ public class PetShopDbContext : DbContext
 
     public DbSet<Pet> Pets { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PetShopDB;Trusted_Connection=true;");
+
+        base.OnConfiguring(optionsBuilder);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // TODO: Fluent API
+        // Fluent API
+
+        //modelBuilder.Entity<Pet>()
+        //    .HasOne(p => p.PetShop)
+        //    .WithMany()
+        //    .HasForeignKey(p => p.PetShop)
+        //    .IsRequired(true)
+        //    .OnDelete(DeleteBehavior.NoAction);
 
         // TODO: EF Core Configurations
 
