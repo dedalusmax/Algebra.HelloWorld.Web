@@ -10,4 +10,10 @@ public class PetShopRepository(PetShopDbContext context) : IPetShopRepository
     {
         return context.PetShops.ToList();
     }
+
+    public void Add(PetShop petShop)
+    {
+        context.PetShops.Add(petShop);
+        context.SaveChanges();
+    }
 }

@@ -17,7 +17,20 @@ namespace Algebra.HelloWorld.Web.MvcApp
             builder.Services.AddDbContext<PetShopDbContext>(options =>
                 options.UseSqlServer(connStr));
 
+            builder.Services.AddTransient<DataSeed>();
+
             var app = builder.Build();
+
+            // update all migrations to db
+            using var scope = app.Services.CreateScope();
+
+            var dbContext = scope.ServiceProvider.GetRequiredService<PetShopDbContext>();
+            dbContext.Database.Migrate();
+
+            //dbContext.Database.ExecuteSql("");
+
+            var seeder = scope.ServiceProvider.GetRequiredService<DataSeed>();
+            seeder.Run();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
