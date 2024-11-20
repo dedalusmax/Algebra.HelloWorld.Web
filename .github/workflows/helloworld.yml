@@ -5,7 +5,7 @@ name: .NET
 
 on:
   push:
-    branches: [ "05-layers" ]
+    branches: [ "main" ]
 
 permissions:
   id-token: write
